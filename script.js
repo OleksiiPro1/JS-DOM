@@ -1,12 +1,5 @@
 'use strict';
 
-// console.log(document.querySelector('.guess-message').textContent);
-// document.querySelector('.guess-message').textContent = 'Right!';
-// document.querySelector('.question').textContent = 15;
-// document.querySelector('.score').textContent = 8;
-// document.querySelector('.number-input').value = 7;
-// console.log(document.querySelector('.number-input').value);
-
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 5;
 let highscore = 0;
@@ -25,27 +18,41 @@ const eventHandler = function() {
             highscore = score;
             document.querySelector('.highscore').textContent = highscore;
         }
-    } else if (guessingNumber < secretNumber) {
-        if (score > 1 ) {
-        document.querySelector('.guess-message').textContent = 'not enough';
-        score--;
-        document.querySelector('.score').textContent = score;
-    } else {
-        document.querySelector('.guess-message').textContent = 'game over';
-        document.querySelector('.score').textContent = 0;
-        document.querySelector('body').style.backgroundColor = 'red';
     }
-    }  else if (guessingNumber > secretNumber) {
+    //  else if (guessingNumber < secretNumber) {
+    //     if (score > 1 ) {
+    //     document.querySelector('.guess-message').textContent = 'not enough';
+    //     score--;
+    //     document.querySelector('.score').textContent = score;
+    // } else {
+    //     document.querySelector('.guess-message').textContent = 'game over';
+    //     document.querySelector('.score').textContent = 0;
+    //     document.querySelector('body').style.backgroundColor = 'red';
+    // }
+    // }  else if (guessingNumber > secretNumber) {
+    //     if (score > 1 ) {
+    //     document.querySelector('.guess-message').textContent = 'Too much';
+    //     score--;
+    //     document.querySelector('.score').textContent = score;
+    //     } else {
+    //         document.querySelector('.guess-message').textContent = 'game over';
+    //         document.querySelector('.score').textContent = 0;
+    //         document.querySelector('body').style.backgroundColor = 'red';
+    //     } }
+     else if (guessingNumber !== secretNumber) {
         if (score > 1 ) {
-        document.querySelector('.guess-message').textContent = 'Too much';
-        score--;
-        document.querySelector('.score').textContent = score;
-        } else {
-            document.querySelector('.guess-message').textContent = 'game over';
-            document.querySelector('.score').textContent = 0;
-            document.querySelector('body').style.backgroundColor = 'red';
-        }
+            document.querySelector('.guess-message').textContent = 
+            guessingNumber > secretNumber ? 'Too much' : 'not enough';
+            score--;
+            document.querySelector('.score').textContent = score;
+            } else {
+                document.querySelector('.guess-message').textContent = 'game over';
+                document.querySelector('.score').textContent = 0;
+                document.querySelector('body').style.backgroundColor = 'red';
+            }
     }
+
+
 }
 
 const eventHandlerRestart = function() {
