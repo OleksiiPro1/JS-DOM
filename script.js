@@ -4,12 +4,17 @@ let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 5;
 let highscore = 0;
 
+const displayGuessMessage = function(message) {
+    document.querySelector('.guess-message').textContent = message;
+}
+
 const eventHandler = function() {
     
     const guessingNumber = Number(document.querySelector('.number-input').value);
     // console.log(guessingNumber, typeof guessingNumber);
     if (!guessingNumber) {
-        document.querySelector('.guess-message').textContent = 'Imput some number';
+        // document.querySelector('.guess-message').textContent = 'Imput some number';
+        displayGuessMessage('Imput some number');
     } else if (guessingNumber === secretNumber) {
         document.querySelector('.guess-message').textContent = 'Yes! Right!!!';       
         document.querySelector('body').style.backgroundColor = 'green';
@@ -41,12 +46,14 @@ const eventHandler = function() {
     //     } }
      else if (guessingNumber !== secretNumber) {
         if (score > 1 ) {
-            document.querySelector('.guess-message').textContent = 
-            guessingNumber > secretNumber ? 'Too much' : 'not enough';
+            // document.querySelector('.guess-message').textContent = 
+            // guessingNumber > secretNumber ? 'Too much' : 'not enough';
+            displayGuessMessage(guessingNumber > secretNumber ? 'Too much' : 'not enough');
             score--;
             document.querySelector('.score').textContent = score;
             } else {
-                document.querySelector('.guess-message').textContent = 'game over';
+                // document.querySelector('.guess-message').textContent = 'game over';
+                displayGuessMessage('game over');
                 document.querySelector('.score').textContent = 0;
                 document.querySelector('body').style.backgroundColor = 'red';
             }
@@ -60,7 +67,8 @@ const eventHandlerRestart = function() {
     score = 5;
     document.querySelector('body').style.backgroundColor = 'black';
     document.querySelector('.question').textContent = '???';
-    document.querySelector('.guess-message').textContent = 'Начни угадывать';
+    // document.querySelector('.guess-message').textContent = 'Начни угадывать';
+    displayGuessMessage('Начни угадывать');
     document.querySelector('.score').textContent = score;
     document.querySelector('.number-input').value = '';
 
