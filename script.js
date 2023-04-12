@@ -9,7 +9,7 @@
 
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 5;
-
+let highscore = 0;
 
 const eventHandler = function() {
     
@@ -18,10 +18,13 @@ const eventHandler = function() {
     if (!guessingNumber) {
         document.querySelector('.guess-message').textContent = 'Imput some number';
     } else if (guessingNumber === secretNumber) {
-        document.querySelector('.guess-message').textContent = 'Yes! Right!!!';
-        document.querySelector('.highscore').textContent = score;
+        document.querySelector('.guess-message').textContent = 'Yes! Right!!!';       
         document.querySelector('body').style.backgroundColor = 'green';
         document.querySelector('.question').textContent = secretNumber;
+        if (score > highscore) {
+            highscore = score;
+            document.querySelector('.highscore').textContent = highscore;
+        }
     } else if (guessingNumber < secretNumber) {
         if (score > 1 ) {
         document.querySelector('.guess-message').textContent = 'not enough';
